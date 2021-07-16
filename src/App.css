@@ -72,12 +72,21 @@ p {
   padding: 7px 10px;
   border: 1px solid #EFFFFF;
   border-radius: 3px;
-  background: #3085D6;
   width: 100%;
   font-size: 15px;
   color: white;
   display: block;
 }
+
+.button-enabled {
+  background: #3085D6
+}
+
+.button-disabled {
+  background: #cccccc;
+  pointer-events: none;
+}
+
 .pb-30 {
   padding-bottom: 30px;
 }

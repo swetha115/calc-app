@@ -11,6 +11,7 @@ function App() {
     let [endDay, setEndDay] = useState(0);
     let [interestRate, setInterestRate] = useState(0);
     let [dateDiffs, setDateDiff] = useState(0);
+    let [buttonDisabled, isButtonDisabled] = useState(true);
     function calculate() {
         let start = startYear + '-' + startMonth + '-' + startDay;
         let end = endYear + '-' + endMonth + '-' + endDay;
@@ -157,7 +158,8 @@ function App() {
                     />
                 </div>
                 {dateDiffs}
-                <input type="button" className="submitStyle" onClick={calculate} value="Calculate" />
+                <input type="button" onClick={calculate} value="Calculate"
+                className={ buttonDisabled ? 'submitStyle button-disabled' : 'submitStyle button-enabled'} />
                     
         
             </form>
