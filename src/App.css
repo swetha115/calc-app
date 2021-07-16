@@ -36,3 +36,70 @@
     transform: rotate(360deg);
   }
 }
+
+h1,
+p {
+  font-family: Lato;
+}
+.appStyle {
+  height: 250px;
+  display: flex;
+}
+.formStyle {
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #C9C9C9;
+  border-radius: 5px;
+  background: #F5F5F5;
+  width: 220px;
+  display: block;
+}
+.labelStyle {
+  margin: 10px 0 5px 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+}
+.inputStyle {
+  margin: 5px 0 10px 0;
+  padding: 5px;
+  border: 1px solid #BFBFBF;
+  border-radius: 3px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.submitStyle {
+  margin: 10px 0 0 0;
+  padding: 7px 10px;
+  border: 1px solid #EFFFFF;
+  border-radius: 3px;
+  background: #3085D6;
+  width: 100%;
+  font-size: 15px;
+  color: white;
+  display: block;
+}
+.pb-30 {
+  padding-bottom: 30px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.startDate {
+  float: left;
+}
+.endDate {
+  margin-left: 620px;
+}
+.display-flex {
+  display: flex;
+}
+
+.app-container {
+    left: 66%;
+    width: 30em;
+    height: 18em;
+    margin-left: 30%;
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+    margin-top: 100px;
+}
