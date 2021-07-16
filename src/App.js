@@ -10,8 +10,10 @@ function App() {
     let [endMonth, setEndMonth] = useState(0);
     let [endDay, setEndDay] = useState(0);
     let [interestRate, setInterestRate] = useState(0);
-    let [dateDiffs, setDateDiff] = useState(0);
-    let [buttonDisabled, isButtonDisabled] = useState(true);
+    let [yearDiff, setYearDiff] = useState(0);
+    let [monthDiff, setMonthDiff] = useState(0);
+    let [DayDiff, setDayDiff] = useState(0);
+    let [buttonDisabled, isButtonDisabled] = useState(false);
     function calculate() {
         let start = startYear + '-' + startMonth + '-' + startDay;
         let end = endYear + '-' + endMonth + '-' + endDay;
@@ -54,7 +56,9 @@ function App() {
             else Days = l.getDate() + Days;
         }
         console.log(Years + 'Year(s), ' + Months + ' Month(s), ' + Days + 'Day(s)');
-        setDateDiff(Years + '/' + Months + '/' + Days);
+        setYearDiff(Years);
+        setMonthDiff(Months);
+        setDayDiff(Days);
         calculateInterest(Years, Months, Days);
     }
     function calculateInterest(years, months, days) {
@@ -157,7 +161,9 @@ function App() {
                         onChange={changeInterestRate}
                     />
                 </div>
-                {dateDiffs}
+                Year(s): {yearDiff}<br />
+                Month(s): {monthDiff}<br />
+                Day(s): {DayDiff}<br />
                 <input type="button" onClick={calculate} value="Calculate"
                 className={ buttonDisabled ? 'submitStyle button-disabled' : 'submitStyle button-enabled'} />
                     
