@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 
 export default function isValidation(props) {
-	let { totalYears, totalMonths, totalDays,} = props;
+	let { totalYears, totalMonths, totalDays, amount, interestRate} = props;
 
-	if( totalYears === '' || totalMonths === '' || totalDays === '') {
+	if( totalYears === '' || totalMonths === '' || totalDays === '' || amount === '' || interestRate === '' ) {
 		return "All fields are manditory"
-	}
-	else if(totalYears <= 0 || totalYears > 5) {
+	} else if(totalYears <= 0 || totalYears > 5) {
 		return "Total years sould be greater than '0' and less than '5'";
+	} else if(amount <= 0 ) {
+		return "Amount sould be greater than '0'";
+	} else if(interestRate <= 0 ) {
+		return "Interest rate sould be greater than '0'";
 	} 
+
 	return '';
 }
 

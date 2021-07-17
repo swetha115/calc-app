@@ -7,7 +7,8 @@ function App() {
     let [totalYears, setTotalYear] = useState('');
     let [totalMonths, setTotalMonth] = useState('');
     let [totalDays, setTotalDay] = useState('');
-    let [interestRate, setInterestRate] = useState(0);
+    let [interestRate, setInterestRate] = useState('');
+    let [amount, setAmount] = useState('');
     let [errorMsg, setErrorMsg] = useState('');
     let [initialRender, setInitialRender] = useState(true);
     function calculateInterest() {
@@ -19,8 +20,7 @@ function App() {
             return;
         }
         isValidate();
-    },
-        [totalYears, totalMonths, totalDays])
+    }, [totalYears, totalMonths, totalDays, amount, interestRate])
 
     function changeTotalYears(e) {
         setTotalYear(Number(e.currentTarget.value));
@@ -37,7 +37,11 @@ function App() {
     }
 
     function changeInterestRate(e) {
-        setInterestRate(e.target.value);
+        setInterestRate(e.currentTarget.value);
+    }
+
+    function changeAmount(e) {
+        setAmount(e.currentTarget.value)
     }
 
     function isValidate() {
@@ -45,6 +49,8 @@ function App() {
             totalYears,
             totalMonths,
             totalDays,
+            amount,
+            interestRate
         }
         let error_Msg = isValidation(props);
         setErrorMsg(error_Msg);
@@ -62,43 +68,43 @@ function App() {
                         {errorMsg != '' ? errorMsg : ''}
                     </div>
                     <div>
-                        <label className="labelStyle">Total Years</label>
+                        <label className="labelStyle">Total Years *</label>
                         <input
                             type="number"
                             className="inputStyle"
-                            onBlur={changeTotalYears}
+                            onChange={changeTotalYears}
                         />
                     </div>
                     <div>
-                        <label className="labelStyle">Total Months</label>
+                        <label className="labelStyle">Total Months *</label>
                         <input
                             type="number"
                             className="inputStyle"
-                            onBlur={changeTotalMonths}
+                            onChange={changeTotalMonths}
                         />
                     </div>
                     <div>
-                        <label className="labelStyle">Total Days</label>
+                        <label className="labelStyle">Total Days *</label>
                         <input
                             type="number"
                             className="inputStyle"
-                            onBlur={changeTotalDays}
+                            onChange={changeTotalDays}
                         />
                     </div>
                     <div>
-                        <label className="labelStyle">Amount</label>
+                        <label className="labelStyle">Amount *</label>
                         <input
                             type="number"
                             className="inputStyle"
-                            onBlur={changeInterestRate}
+                            onChange={changeAmount}
                         />
                     </div>
                     <div>
-                        <label className="labelStyle">Interest Rate</label>
+                        <label className="labelStyle">Interest Rate *</label>
                         <input
                             type="number"
                             className="inputStyle"
-                            onBlur={changeInterestRate}
+                            onChange={changeInterestRate}
                         />
                     </div>
 
