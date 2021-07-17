@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import isValidation from './app-factory';
 
 function App() {
-    let [totalYears, setTotalYear] = useState(0);
-    let [totalMonths, setTotalMonth] = useState(0);
-    let [totalDays, setTotalDay] = useState(0);
+    let [totalYears, setTotalYear] = useState('');
+    let [totalMonths, setTotalMonth] = useState('');
+    let [totalDays, setTotalDay] = useState('');
     let [interestRate, setInterestRate] = useState(0);
     let [errorMsg, setErrorMsg] = useState('');
     let [initialRender, setInitialRender] = useState(true);
