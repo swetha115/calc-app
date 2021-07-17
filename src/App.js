@@ -13,15 +13,14 @@ function App() {
     function calculateInterest() {
     }
 
-    useEffect(() => 
-    {
-        if(initialRender) {
+    useEffect(() => {
+        if (initialRender) {
             setInitialRender(false);
             return;
         }
         isValidate();
     },
-    [totalYears, totalMonths, totalDays])
+        [totalYears, totalMonths, totalDays])
 
     function changeTotalYears(e) {
         setTotalYear(Number(e.currentTarget.value));
@@ -47,20 +46,21 @@ function App() {
             totalMonths,
             totalDays,
         }
-       let error_Msg =  isValidation(props);
-       setErrorMsg(error_Msg);
+        let error_Msg = isValidation(props);
+        setErrorMsg(error_Msg);
     }
 
     return (
         <div class="app-container">
             <div class="display-flex">
-               
-            
+
+
                 <form className="formStyle mb-20">
-                <div className={ errorMsg != '' ? 'c-red' : '' }>
-                {errorMsg != '' ? errorMsg: ''}
-                </div>
-                    <h2> Start Date </h2>
+
+                    <h2 className="text-align"> Interest Calculator </h2>
+                    <div className={errorMsg != '' ? 'c-red' : ''}>
+                        {errorMsg != '' ? errorMsg : ''}
+                    </div>
                     <div>
                         <label className="labelStyle">Total Years</label>
                         <input
@@ -86,29 +86,29 @@ function App() {
                         />
                     </div>
                     <div>
-                    <label className="labelStyle">Amount</label>
-                    <input
-                        type="number"
-                        className="inputStyle"
-                        onBlur={changeInterestRate}
-                    />
-                </div>
-                <div>
-                    <label className="labelStyle">Interest Rate</label>
-                    <input
-                        type="number"
-                        className="inputStyle"
-                        onBlur={changeInterestRate}
-                    />
-                </div>
+                        <label className="labelStyle">Amount</label>
+                        <input
+                            type="number"
+                            className="inputStyle"
+                            onBlur={changeInterestRate}
+                        />
+                    </div>
+                    <div>
+                        <label className="labelStyle">Interest Rate</label>
+                        <input
+                            type="number"
+                            className="inputStyle"
+                            onBlur={changeInterestRate}
+                        />
+                    </div>
 
-                <input type="button" onClick={calculateInterest} value="Calculate"
-                className={ errorMsg != '' ? 'submitStyle button-disabled' : 'submitStyle button-enabled'} />
-                Interest amount:       <br />
-                Total amount: 
-        
+                    <input type="button" onClick={calculateInterest} value="Calculate"
+                        className={errorMsg != '' ? 'submitStyle button-disabled' : 'submitStyle button-enabled'} />
+                    Interest amount:       <br />
+                    Total amount:
+
                 </form>
-              
+
             </div>
         </div>
     );
@@ -287,8 +287,8 @@ export default App;
 //                 Day(s): {DayDiff}<br />
 //                 <input type="button" onClick={calculate} value="Calculate"
 //                 className={ buttonDisabled ? 'submitStyle button-disabled' : 'submitStyle button-enabled'} />
-                    
-        
+
+
 //             </form>
 //         </div>
 //     );

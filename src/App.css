@@ -103,6 +103,10 @@ p {
   display: flex;
 }
 
+.text-align {
+  text-align: center;
+}
+
 .app-container {
     left: 66%;
     width: 30em;
