@@ -4,11 +4,11 @@ import React, { useEffect, useState } from 'react';
 import isValidation from './app-factory';
 
 function App() {
-    let [totalYears, setTotalYear] = useState('');
-    let [totalMonths, setTotalMonth] = useState('');
-    let [totalDays, setTotalDay] = useState('');
-    let [interestRate, setInterestRate] = useState('');
-    let [amount, setAmount] = useState('');
+    let [totalYears, setTotalYear] = useState('0');
+    let [totalMonths, setTotalMonth] = useState('0');
+    let [totalDays, setTotalDay] = useState('0');
+    let [interestRate, setInterestRate] = useState('0');
+    let [amount, setAmount] = useState('0');
     let [errorMsg, setErrorMsg] = useState('');
     let [initialRender, setInitialRender] = useState(true);
     function calculateInterest() {
@@ -23,25 +23,28 @@ function App() {
     }, [totalYears, totalMonths, totalDays, amount, interestRate])
 
     function changeTotalYears(e) {
-        setTotalYear(Number(e.currentTarget.value));
+        let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
+        setTotalYear(value);
     }
 
     function changeTotalMonths(e) {
-        setTotalMonth(Number(e.currentTarget.value));
-        isValidate();
+        let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value); 
+        setTotalMonth(value);
     }
 
     function changeTotalDays(e) {
-        setTotalDay(Number(e.currentTarget.value));
-        isValidate();
+        let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
+        setTotalDay(value);
     }
 
     function changeInterestRate(e) {
-        setInterestRate(e.currentTarget.value);
+        let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
+        setInterestRate(value);
     }
 
     function changeAmount(e) {
-        setAmount(e.currentTarget.value)
+        let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
+        setAmount(value);
     }
 
     function isValidate() {
