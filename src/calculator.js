@@ -1,379 +1,450 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import isValidation from './app-factory';
+import isValidation, { isCalculateButtonDisabled } from './app-factory';
 import { history } from './shared/helpers/history';
 
 const Calculator = (props) => {
-    let [totalYears, setTotalYear] = useState('0');
-    let [totalMonths, setTotalMonth] = useState('0');
-    let [totalDays, setTotalDay] = useState('0');
-    let [interestRate, setInterestRate] = useState('0');
-    let [amount, setAmount] = useState('0');
-    let [startDate, setStartDate] = useState('0');
-    let [endDate, setEndDate] = useState('0');
-    let [interestSelectType, setInterestType] = useState('compound interest');
-    let [errorMsg, setErrorMsg] = useState('');
-    let [initialRender, setInitialRender] = useState(true);
-    let totalInterest = 0;
+	let [totalYears, setTotalYear] = useState('0');
+	let [totalMonths, setTotalMonth] = useState('0');
+	let [totalDays, setTotalDay] = useState('0');
+	let [interestRate, setInterestRate] = useState('0');
+	let [amount, setAmount] = useState('0');
+	let [startDate, setStartDate] = useState('0');
+	let [endDate, setEndDate] = useState('0');
+	let [interestSelectType, setInterestType] = useState('compound interest');
+	let [errorMsg, setErrorMsg] = useState('');
+	let [isButtonDisabled, setIsButtonDiabled] = useState(true);
+	let [initialRender, setInitialRender] = useState(true);
 
-    let i1x = 0;
-    let i1 = 0;
-    let i1m = 0;
-    let i1d = 0;
-    let i2x = 0;
-    let i2 = 0;
-    let i2m = 0;
-    let i2d = 0;
-    let i3x = 0;
-    let i4x = 0;
-    let i4m = 0;
-    let i4d = 0;
-    let i3 = 0;
-    let i3m = 0;
-    let i3d = 0;
-    let ry = 0;
-    let rm = 0;
-    let rf = 0;
-    let p1 = 0;
-    let p2 = 0;
-    let p3 = 0;
-    let totalAmount = 0;
+	let [totalInterest, setTotalInterest] = useState([]);
+	let [allInterests, setInterests] = useState([]);
 
-    let totYears = [];
-    let totMonths = [];
-    let totDays = [];
+	let i1x = 0;
+	let i1 = 0;
+	let i1m = 0;
+	let i1d = 0;
+	let i2x = 0;
+	let i2 = 0;
+	let i2m = 0;
+	let i2d = 0;
+	let i3x = 0;
+	let i4x = 0;
+	let i4m = 0;
+	let i4d = 0;
+	let i3 = 0;
+	let i3m = 0;
+	let i3d = 0;
+	let ry = 0;
+	let rm = 0;
+	let rf = 0;
+	let p1 = 0;
+	let p2 = 0;
+	let p3 = 0;
+	let totalAmount = 0;
 
-    let interestType = [
-        { name: 'simple interest', value: 'simple interest' },
-        { name: 'compound interest', value: 'compound interest' }
-    ];
+	let totYears = [];
+	let totMonths = [];
+	let totDays = [];
 
-    for (let i = 0; i <= 10; i++) {
-        totYears.push({ 'name': i, 'value': i })
-    }
+	
 
-    for (let i = 0; i <= 12; i++) {
-        totMonths.push({ 'name': i, 'value': i })
-    }
+	let interestType = [
+		{ name: 'simple interest', value: 'simple interest' },
+		{ name: 'compound interest', value: 'compound interest' }
+	];
 
-    for (let i = 0; i <= 29; i++) {
-        totDays.push({ 'name': i, 'value': i })
-    }
+	for (let i = 0; i <= 10; i++) {
+		totYears.push({ 'name': i, 'value': i })
+	}
 
-    function calculateInterest() {
-        totalDays = Number(totalDays);
-        totalYears = Number(totalYears);
-        totalMonths = Number(totalMonths);
+	for (let i = 0; i <= 12; i++) {
+		totMonths.push({ 'name': i, 'value': i })
+	}
 
-        if (interestSelectType == 'compound interest') {
-            if (totalYears < 1) {
-                 i1x = (amount * interestRate) / 100;
-                 i1m = (i1x * totalMonths);
-                 i1d = (i1x * totalDays) / 30;
-                 i1 = i1m + i1d;
-            } else if (totalYears == 1) {
-                if (totalMonths > 1) {
-                     i1x = (amount * interestRate) / 100;
-                     i1 = i1x * 12;
-                     p1 = amount + i1;
-                     i2x = (p1 * interestRate) / 100;
-                     i2m = i2x * totalMonths;
-                     i2d = (i2x * totalDays) / 30;
-                     i2 = i2m + i2d;
-                } else {
-                     i1x = (amount * interestRate) / 100;
-                     i1 = i1x * 12;
-                     i2x = (amount * interestRate) / 100;
-                     i2m = i2x * totalMonths;
-                     i2d = (i2x * totalDays) / 30;
-                     i2 = i2m + i2d;
-                }
-            } else if (totalYears == 2) {
-                if (totalMonths > 1) {
-                     i1x = (amount * interestRate) / 100;
-                     i1 = i1x * 12;
-                     p1 = amount + i1;
-                     i2x = (p1 * interestRate) / 100;
-                     i2 = i2x * 12;
-                     p2 = amount + i1 + i2;
-                     i3x = (p2 * interestRate) / 100;
-                     i3m = i3x * totalMonths;
-                     i3d = (i3x * totalDays) / 30;
-                     i3 = i3m + i3d;
-                } else {
-                     i1x = (amount * interestRate) / 100;
-                     i1 = i1x * 12;
-                     p1 = amount + i1;
-                     i2x = (p1 * interestRate) / 100;
-                     i2 = i2x * 12;
-                     i3x = (p1 * interestRate) / 100;
-                     i3m = i3x * totalMonths;
-                     i3d = (i3x * totalDays) / 30;
-                     i3 = i3m + i3d;
-                }
-            } else if (totalYears == 3) {
-                 i1x = (amount * interestRate) / 100;
-                 i1 = i1x * 12;
-                 p1 = amount + i1;
-                 i2x = (p1 * interestRate) / 100;
-                 i2 = i2x * 12;
-                 p2 = amount + i1 + i2;
-                 i3x = (p2 * interestRate) / 100;
-                 i3 = i3x * 12;
-                 i4x = (p2 * interestRate) / 100;
-                 i4m = i4x * totalMonths;
-                 i4d = (i4x * totalDays) / 30;
-                i3 = i3 + i4m + i4d;
-            } else {
-                 ry = totalYears - 3;
-                 rm = ry * 12;
-                 rf = rm + totalMonths;
-                 i1x = (amount * interestRate) / 100;
-                 i1 = i1x * 12;
-                 p1 = amount + i1;
-                 i2x = (p1 * interestRate) / 100;
-                 i2 = i2x * 12;
-                 p2 = amount + i1 + i2;
-                 i3x = (p2 * interestRate) / 100;
-                 i3 = i3x * 12;
-                 i4x = (p2 * interestRate) / 100;
-                 i4m = i4x * rf;
-                 i4d = (i4x * totalDays) / 30;
-                i3 = i3 + i4m + i4d;
-            }
+	for (let i = 0; i <= 29; i++) {
+		totDays.push({ 'name': i, 'value': i })
+	}
 
-        } else {
-            if (totalYears < 1) {
-                 i1x = (amount * interestRate) / 100;
-                 i1m = (i1x * totalMonths);
-                 i1d = (i1x * totalDays) / 30;
-                 i1 = i1m + i1d;
-            } else if (totalYears == 1) {
-                if (totalMonths > 1) {
-                     i1x = (amount * interestRate) / 100;
-                     i1 = i1x * 12;
-                     i2x = (amount * interestRate) / 100;
-                     i2m = i2x * totalMonths;
-                     i2d = (i2x * totalDays) / 30;
-                     i2 = i2m + i2d;
-                } else {
-                     i1x = (amount * interestRate) / 100;
-                     i1 = i1x * 12;
-                     i2x = (amount * interestRate) / 100;
-                     i2m = i2x * totalMonths;
-                     i2d = (i2x * totalDays) / 30;
-                     i2 = i2m + i2d;
-                }
-            } else if (totalYears == 2) {
-                if (totalMonths > 1) {
-                     i1x = (amount * interestRate) / 100;
-                     i1 = i1x * 12;
-                     i2x = (amount * interestRate) / 100;
-                     i2 = i2x * 12;
-                     i3x = (amount * interestRate) / 100;
-                     i3m = i3x * totalMonths;
-                     i3d = (i3x * totalDays) / 30;
-                     i3 = i3m + i3d;
-                } else {
-                     i1x = (amount * interestRate) / 100;
-                     i1 = i1x * 12;
-                     i2x = (amount * interestRate) / 100;
-                     i2 = i2x * 12;
-                     i3x = (amount * interestRate) / 100;
-                     i3m = i3x * totalMonths;
-                     i3d = (i3x * totalDays) / 30;
-                     i3 = i3m + i3d;
-                }
-            } else if (totalYears == 3) {
-                 i1x = (amount * interestRate) / 100;
-                 i1 = i1x * 12;
-                 i2x = (amount * interestRate) / 100;
-                 i2 = i2x * 12;
-                 i3x = (amount * interestRate) / 100;
-                 i3 = i3x * 12;
-                 i4x = (amount * interestRate) / 100;
-                 i4m = i4x * totalMonths;
-                 i4d = (i4x * totalDays) / 30;
-                i3 = i3 + i4m + i4d;
-            } else {
-                 ry = totalYears - 3;
-                 rm = ry * 12;
-                 rf = rm + totalMonths;
-                 i1x = (amount * interestRate) / 100;
-                 i1 = i1x * 12;
-                 i2x = (amount * interestRate) / 100;
-                 i2 = i2x * 12;
-                 i3x = (amount * interestRate) / 100;
-                 i3 = i3x * 12;
-                 i4x = (amount * interestRate) / 100;
-                 i4m = i4x * rf;
-                 i4d = (i4x * totalDays) / 30;
-                i3 = i3 + i4m + i4d;
-            }
+	function calculateInterest() {
+		totalDays = Number(totalDays);
+		totalYears = Number(totalYears);
+		totalMonths = Number(totalMonths);
+		let interestData = [];
+		if (interestSelectType == 'compound interest') {
+			if (totalYears < 1) {
+				i1x = (amount * interestRate) / 100;
+				i1m = (i1x * totalMonths);
+				i1d = (i1x * totalDays) / 30;
+				i1 = i1m + i1d;
+				interestData.push(i1);
+			} else if (totalYears == 1) {
+				if (totalMonths > 1) {
+					i1x = (amount * interestRate) / 100;
+					i1 = i1x * 12;
+					interestData.push(i1);
+					p1 = amount + i1;
+					i2x = (p1 * interestRate) / 100;
+					i2m = i2x * totalMonths;
+					i2d = (i2x * totalDays) / 30;
+					i2 = i2m + i2d;
+					interestData.push(i2);
+				} else {
+					i1x = (amount * interestRate) / 100;
+					i1 = i1x * 12;
+					interestData.push(i1);
+					i2x = (amount * interestRate) / 100;
+					i2m = i2x * totalMonths;
+					i2d = (i2x * totalDays) / 30;
+					i2 = i2m + i2d;
+					interestData.push(i2);
+				}
+			} else if (totalYears == 2) {
+				if (totalMonths > 1) {
+					i1x = (amount * interestRate) / 100;
+					i1 = i1x * 12;
+					interestData.push(i1);
+					p1 = amount + i1;
+					i2x = (p1 * interestRate) / 100;
+					i2 = i2x * 12;
+					interestData.push(i2);
+					p2 = amount + i1 + i2;
+					i3x = (p2 * interestRate) / 100;
+					i3m = i3x * totalMonths;
+					i3d = (i3x * totalDays) / 30;
+					i3 = i3m + i3d;
+					interestData.push(i3);
+				} else {
+					i1x = (amount * interestRate) / 100;
+					i1 = i1x * 12;
+					interestData.push(i1);
+					p1 = amount + i1;
+					i2x = (p1 * interestRate) / 100;
+					i2 = i2x * 12;
+					interestData.push(i2);
+					i3x = (p1 * interestRate) / 100;
+					i3m = i3x * totalMonths;
+					i3d = (i3x * totalDays) / 30;
+					i3 = i3m + i3d;
+					interestData.push(i3);
+				}
+			} else if (totalYears == 3) {
+				i1x = (amount * interestRate) / 100;
+				i1 = i1x * 12;
+				interestData.push(i1);
+				p1 = amount + i1;
+				i2x = (p1 * interestRate) / 100;
+				i2 = i2x * 12;
+				interestData.push(i2);
+				p2 = amount + i1 + i2;
+				i3x = (p2 * interestRate) / 100;
+				i3 = i3x * 12;
+				i4x = (p2 * interestRate) / 100;
+				i4m = i4x * totalMonths;
+				i4d = (i4x * totalDays) / 30;
+				i3 = i3 + i4m + i4d;
+				interestData.push(i3);
+			} else {
+				ry = totalYears - 3;
+				rm = ry * 12;
+				rf = rm + totalMonths;
+				i1x = (amount * interestRate) / 100;
+				i1 = i1x * 12;
+				interestData.push(i1);
+				p1 = amount + i1;
+				i2x = (p1 * interestRate) / 100;
+				i2 = i2x * 12;
+				interestData.push(i2);
+				p2 = amount + i1 + i2;
+				i3x = (p2 * interestRate) / 100;
+				i3 = i3x * 12;
+				i4x = (p2 * interestRate) / 100;
+				i4m = i4x * rf;
+				i4d = (i4x * totalDays) / 30;
+				i3 = i3 + i4m + i4d;
+				interestData.push(i3);
+			}
 
-        }
-         totalInterest = i1 + i2 + i3;
-         totalAmount = totalInterest + amount;
-		 history.push('/result');
-    }
+		} else {
+			if (totalYears < 1) {
+				i1x = (amount * interestRate) / 100;
+				i1m = (i1x * totalMonths);
+				i1d = (i1x * totalDays) / 30;
+				i1 = i1m + i1d;
+				interestData.push(i1);
+			} else if (totalYears == 1) {
+				if (totalMonths > 1) {
+					i1x = (amount * interestRate) / 100;
+					i1 = i1x * 12;
+					interestData.push(i1);
+					i2x = (amount * interestRate) / 100;
+					i2m = i2x * totalMonths;
+					i2d = (i2x * totalDays) / 30;
+					i2 = i2m + i2d;
+					interestData.push(i2);
+				} else {
+					i1x = (amount * interestRate) / 100;
+					i1 = i1x * 12;
+					interestData.push(i1);
+					i2x = (amount * interestRate) / 100;
+					i2m = i2x * totalMonths;
+					i2d = (i2x * totalDays) / 30;
+					i2 = i2m + i2d;
+					interestData.push(i2);
+				}
+			} else if (totalYears == 2) {
+				if (totalMonths > 1) {
+					i1x = (amount * interestRate) / 100;
+					i1 = i1x * 12;
+					interestData.push(i1);
+					i2x = (amount * interestRate) / 100;
+					i2 = i2x * 12;
+					interestData.push(i2);
+					i3x = (amount * interestRate) / 100;
+					i3m = i3x * totalMonths;
+					i3d = (i3x * totalDays) / 30;
+					i3 = i3m + i3d;
+					interestData.push(i3);
+				} else {
+					i1x = (amount * interestRate) / 100;
+					i1 = i1x * 12;
+					interestData.push(i1);
+					i2x = (amount * interestRate) / 100;
+					i2 = i2x * 12;
+					interestData.push(i2);
+					i3x = (amount * interestRate) / 100;
+					i3m = i3x * totalMonths;
+					i3d = (i3x * totalDays) / 30;
+					i3 = i3m + i3d;
+					interestData.push(i3);
+				}
+			} else if (totalYears == 3) {
+				i1x = (amount * interestRate) / 100;
+				i1 = i1x * 12;
+				interestData.push(i1);
+				i2x = (amount * interestRate) / 100;
+				i2 = i2x * 12;
+				interestData.push(i2);
+				i3x = (amount * interestRate) / 100;
+				i3 = i3x * 12;
+				i4x = (amount * interestRate) / 100;
+				i4m = i4x * totalMonths;
+				i4d = (i4x * totalDays) / 30;
+				i3 = i3 + i4m + i4d;
+				interestData.push(i3);
+			} else {
+				ry = totalYears - 3;
+				rm = ry * 12;
+				rf = rm + totalMonths;
+				i1x = (amount * interestRate) / 100;
+				i1 = i1x * 12;
+				interestData.push(i1);
+				i2x = (amount * interestRate) / 100;
+				i2 = i2x * 12;
+				interestData.push(i2);
+				i3x = (amount * interestRate) / 100;
+				i3 = i3x * 12;
+				i4x = (amount * interestRate) / 100;
+				i4m = i4x * rf;
+				i4d = (i4x * totalDays) / 30;
+				i3 = i3 + i4m + i4d;
+				interestData.push(i3);
+			}
+		}
+		let interestArray = [];
+		for(let i = 0; i < interestData.length; i++) {
+			interestArray.push({name: 'interest' + i, value: interestData[i]})
+		}
+		setInterests(interestArray);
 
-    useEffect(() => {
-        if (initialRender) {
-            setInitialRender(false);
-            return;
-        }
-        isValidate();
-    }, [totalYears, totalMonths, totalDays, amount, interestRate, startDate, endDate])
+		totalInterest = i1 + i2 + i3;
+		totalAmount = totalInterest + amount;
+		let properties = [
+			{ name: 'Start Date', value: startDate },
+			{ name: 'End Date', value: endDate },
+			{ name: 'Total Years', value: totalYears },
+			{ name: 'Total Months', value: totalMonths },
+			{ name: 'Total Days', value: totalDays },
+			{ name: 'Amount', value: amount },
+			{name: 'Interests', value: interestArray},
+			{ name: 'Total Interest', value: totalInterest },
+			{ name: 'Total Amount', value: totalAmount },
 
-    function changeTotalYears(e) {
-        let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
-        setTotalYear(e.currentTarget.value);
-    }
+		]
+		props.onCalculationClick(properties);
+	}
 
-    function changeTotalMonths(e) {
-        let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
-        setTotalMonth(e.currentTarget.value);
-    }
+	useEffect(() => {
+		checkForButtonDisabling();
+		if (initialRender) {
+			setInitialRender(false);
+			return;
+		}
+		isValidate();
+	}, [totalYears, totalMonths, totalDays, amount, interestRate, startDate, endDate])
 
-    function changeTotalDays(e) {
-        let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
-        setTotalDay(e.currentTarget.value);
-    }
+	function changeTotalYears(e) {
+		let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
+		setTotalYear(e.currentTarget.value);
+	}
 
-    function changeInterestRate(e) {
-        let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
-        setInterestRate(value);
-    }
+	function changeTotalMonths(e) {
+		let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
+		setTotalMonth(e.currentTarget.value);
+	}
 
-    function changeAmount(e) {
-        let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
-        setAmount(value);
-    }
+	function changeTotalDays(e) {
+		let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
+		setTotalDay(e.currentTarget.value);
+	}
 
-    function changeStartDate(e) {
-        setStartDate(e.currentTarget.value);
-    }
+	function changeInterestRate(e) {
+		let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
+		setInterestRate(value);
+	}
 
-    function changeEndDate(e) {
-        setEndDate(e.currentTarget.value);
-    }
+	function changeAmount(e) {
+		let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
+		setAmount(value);
+	}
 
-    function changeInterestType(e) {
-        setInterestType(e.currentTarget.value);
-    }
+	function changeStartDate(e) {
+		setStartDate(e.currentTarget.value);
+	}
 
-    function isValidate() {
-        let props = {
-            totalYears,
-            totalMonths,
-            totalDays,
-            amount,
-            interestRate,
-            startDate,
-            endDate
-        }
-        let error_Msg = isValidation(props);
-        setErrorMsg(error_Msg);
-    }
+	function changeEndDate(e) {
+		setEndDate(e.currentTarget.value);
+	}
 
-    return (
-        
-            <div className="display-flex">
+	function changeInterestType(e) {
+		setInterestType(e.currentTarget.value);
+	}
 
+	function checkForButtonDisabling() {
+		let props = {
+			totalYears,
+			totalMonths,
+			totalDays,
+			amount,
+			interestRate,
+			startDate,
+			endDate
+		}
+		let isDisabled = isCalculateButtonDisabled(props);
+		setIsButtonDiabled(isDisabled);
+	}
 
-                <form className="formStyle mb-20">
+	function isValidate() {
+		let props = {
+			totalYears,
+			totalMonths,
+			totalDays,
+			amount,
+			interestRate,
+			startDate,
+			endDate
+		}
+		let error_Msg = isValidation(props);
+		setErrorMsg(error_Msg);
+	}
 
-                    <h2 className="text-align"> Interest Calculator </h2>
-                    <div className={errorMsg != '' ? 'c-red' : ''}>
-                        {errorMsg != '' ? errorMsg : ''}
-                    </div>
+	return (
 
-                    <div>
-                        <label className="labelStyle">Start year *</label>
-                        <input
-                            type="text" placeholder="yyyy-mm-dd"
-                            className="inputStyle"
-                            onChange={changeStartDate}
-                        />
-                    </div>
-
-                    <div>
-                        <label className="labelStyle">End year *</label>
-                        <input
-                            type="text" placeholder="yyyy-mm-dd"
-                            className="inputStyle"
-                            onChange={changeEndDate}
-                        />
-                    </div>
-
-                    <div>
-                        <label className="labelStyle">Total Years *</label>
-                        <div className="select">
-                            <select name="slct" id="slct" onChange={changeTotalYears}>
-                                {totYears.map((e, key) => {
-                                    return <option  key={key} value={e.value}>{e.name}</option>
-                                })}
-                            </select>
-                        </div>
-                    </div>
+		<div>
 
 
-                    <div>
-                        <label className="labelStyle">Total Months *</label>
-                        <div className="select">
-                            <select name="slct" id="slct1" onChange={changeTotalMonths}>
-                                {totMonths.map((e, key) => {
-                                    return <option  key={key} value={e.value}>{e.name}</option>
-                                })}
-                            </select>
-                        </div>
-                    </div>
+			<form className="formStyle mb-20">
 
-                    <div>
-                        <label className="labelStyle">Total Days *</label>
-                        <div className="select">
-                            <select name="slct" id="slct2" onChange={changeTotalDays}>
-                                {totDays.map((e, key) => {
-                                    return <option key={key} value={e.value}>{e.name}</option>
-                                })}
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label className="labelStyle">Amount *</label>
-                        <input
-                            type="number"
-                            className="inputStyle"
-                            onChange={changeAmount}
-                        />
-                    </div>
-                    <div>
-                        <label className="labelStyle">Interest Rate *</label>
-                        <input
-                            type="number"
-                            className="inputStyle"
-                            onChange={changeInterestRate}
-                        />
-                    </div>
+				<h2 className="text-align"> Interest Calculator </h2>
+				<div className={errorMsg != '' ? 'c-red' : ''}>
+					{errorMsg != '' ? errorMsg : ''}
+				</div>
 
-                    <div>
-                        <label className="labelStyle">Interest type *</label>
-                        <div className="select">
-                            <select name="slct" id="slct3" onChange={changeInterestType} value={interestSelectType}>
-                                {interestType.map((e, key) => {
-                                    return <option key={key} value={e.value}>{e.name}</option>
-                                })}
-                            </select>
-                        </div>
-                    </div>
+				<div>
+					<label className="labelStyle">Start year *</label>
+					<input
+						type="text" placeholder="yyyy-mm-dd"
+						className="inputStyle"
+						onChange={changeStartDate}
+					/>
+				</div>
 
-                    <input type="button" onClick={calculateInterest, props.onCalculationClick} value="Calculate"
-                        className={errorMsg != '' ? 'submitStyle button-disabled' : 'submitStyle button-enabled'} />
+				<div>
+					<label className="labelStyle">End year *</label>
+					<input
+						type="text" placeholder="yyyy-mm-dd"
+						className="inputStyle"
+						onChange={changeEndDate}
+					/>
+				</div>
 
-                </form>
+				<div>
+					<label className="labelStyle">Total Years *</label>
+					<div className="select">
+						<select name="slct" id="slct" onChange={changeTotalYears}>
+							{totYears.map((e, key) => {
+								return <option key={key} value={e.value}>{e.name}</option>
+							})}
+						</select>
+					</div>
+				</div>
 
-            </div>
-    );
+
+				<div>
+					<label className="labelStyle">Total Months *</label>
+					<div className="select">
+						<select name="slct" id="slct1" onChange={changeTotalMonths}>
+							{totMonths.map((e, key) => {
+								return <option key={key} value={e.value}>{e.name}</option>
+							})}
+						</select>
+					</div>
+				</div>
+
+				<div>
+					<label className="labelStyle">Total Days *</label>
+					<div className="select">
+						<select name="slct" id="slct2" onChange={changeTotalDays}>
+							{totDays.map((e, key) => {
+								return <option key={key} value={e.value}>{e.name}</option>
+							})}
+						</select>
+					</div>
+				</div>
+				<div>
+					<label className="labelStyle">Amount *</label>
+					<input
+						type="number"
+						className="inputStyle"
+						onChange={changeAmount}
+					/>
+				</div>
+				<div>
+					<label className="labelStyle">Interest Rate *</label>
+					<input
+						type="number"
+						className="inputStyle"
+						onChange={changeInterestRate}
+					/>
+				</div>
+
+				<div>
+					<label className="labelStyle">Interest type *</label>
+					<div className="select">
+						<select name="slct" id="slct3" onChange={changeInterestType} value={interestSelectType}>
+							{interestType.map((e, key) => {
+								return <option key={key} value={e.value}>{e.name}</option>
+							})}
+						</select>
+					</div>
+				</div>
+
+				<input type="button" onClick={calculateInterest} value="Calculate"
+					className={isButtonDisabled ? 'submitStyle button-disabled' : 'submitStyle button-enabled'} />
+
+			</form>
+
+		</div>
+	);
 }
 
 export default Calculator;

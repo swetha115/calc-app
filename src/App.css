@@ -1,3 +1,7 @@
+html, body, #root, .main-screen, .app-container {
+  height: 100%;
+}
+
 .App {
   text-align: center;
 }
@@ -47,11 +51,11 @@ p {
 }
 .formStyle {
   margin: auto;
-  padding: 10px;
+  padding: 23px;
   border: 1px solid #C9C9C9;
   border-radius: 5px;
   background: #F5F5F5;
-  width: 300px;
+  width: 450px;
   display: block;
 }
 .labelStyle {
@@ -110,9 +114,7 @@ p {
 .app-container {
     left: 66%;
     width: 30em;
-    height: 18em;
     margin-left: 30%;
-    margin-top: 100px;
 }
 
 .c-red {
@@ -138,7 +140,7 @@ select::-ms-expand {
 .select {
   position: relative;
   display: flex;
-  width: 18.7em;
+  width: 28em;
   height: 2em;
   line-height: 2;
   background: #fdfcfc;
@@ -170,4 +172,62 @@ select {
 /* Transition */
 .select:hover::after {
   color: #f39c12;
+}
+
+.table-view {
+  left: 66%;
+  width: 35em;
+  height: 18em;
+  padding-top: 70px;
+}
+
+.viewdata {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+  width: 100%;
+}
+
+.viewdata td, .viewdata th {
+  border: 1px solid #ddd;
+  padding: 5px;
+  width: 200px;
+}
+
+.viewdata tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+.viewdata tr:nth-child(odd){
+background-color: #c3c0bd;
+}
+
+.viewdata tr:hover {
+  background-color: #ddd;
+}
+
+.viewdata th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+  background-color: #3085d6;;
+  color: white;
+  width: 200px;
+}
+
+.title {
+  text-align: center;
+  font-family: arial, sans-serif;
+}
+
+.table-back-button {
+  width: 150px;
+}
+
+.w-140 {
+  width: 140px;
+}
+
+.main-screen {
+  background-image: url(./calc-bg.jpg);
 }

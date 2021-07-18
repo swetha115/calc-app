@@ -1,22 +1,30 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import isValidation from './app-factory';
 import Calculator from './calculator';
 import Result from './result';
 
 function App() {
 
     let [isCalculated, setIsCalculated] = useState(false);
-   
-    function handleCalculateResult(e) {
+    let [allProps, setAllProperties] = useState([]);
+
+
+    function handleCalculateResult(values) {
         setIsCalculated(true);
+        setAllProperties(values);
     }
-    
+
+    function handleBackClick(e) {
+        setIsCalculated(false);
+    }
+
     return (
-        <div className="app-container">
-            {!isCalculated ? <Calculator onCalculationClick={handleCalculateResult}/>
-            : <Result /> }
+        <div class="main-screen">
+            <div className="app-container">
+                {!isCalculated ? <Calculator onCalculationClick={handleCalculateResult} />
+                    : <Result onBackClick={handleBackClick} allProps={allProps} />}
+            </div>
         </div>
     );
 }
