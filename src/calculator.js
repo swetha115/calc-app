@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import isValidation from './app-factory';
 import { history } from './shared/helpers/history';
 
-const Calculator = () => {
+const Calculator = (props) => {
     let [totalYears, setTotalYear] = useState('0');
     let [totalMonths, setTotalMonth] = useState('0');
     let [totalDays, setTotalDay] = useState('0');
@@ -277,7 +277,7 @@ const Calculator = () => {
     }
 
     return (
-        <div className="app-container">
+        
             <div className="display-flex">
 
 
@@ -317,14 +317,6 @@ const Calculator = () => {
                         </div>
                     </div>
 
-                    {/* <div>
-                        <label className="labelStyle">Total Years *</label>
-                        <input
-                            type="number"
-                            className="inputStyle"
-                            onChange={changeTotalYears}
-                        />
-                    </div> */}
 
                     <div>
                         <label className="labelStyle">Total Months *</label>
@@ -336,14 +328,6 @@ const Calculator = () => {
                             </select>
                         </div>
                     </div>
-                    {/* <div>
-                        <label className="labelStyle">Total Months *</label>
-                        <input
-                            type="number"
-                            className="inputStyle"
-                            onChange={changeTotalMonths}
-                        />
-                    </div> */}
 
                     <div>
                         <label className="labelStyle">Total Days *</label>
@@ -355,14 +339,6 @@ const Calculator = () => {
                             </select>
                         </div>
                     </div>
-                    {/* <div>
-                        <label className="labelStyle">Total Days *</label>
-                        <input
-                            type="number"
-                            className="inputStyle"
-                            onChange={changeTotalDays}
-                        />
-                    </div> */}
                     <div>
                         <label className="labelStyle">Amount *</label>
                         <input
@@ -391,13 +367,12 @@ const Calculator = () => {
                         </div>
                     </div>
 
-                    <input type="submit" onClick={calculateInterest} value="Calculate"
+                    <input type="button" onClick={calculateInterest, props.onCalculationClick} value="Calculate"
                         className={errorMsg != '' ? 'submitStyle button-disabled' : 'submitStyle button-enabled'} />
 
                 </form>
 
             </div>
-        </div>
     );
 }
 
