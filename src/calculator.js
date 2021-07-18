@@ -251,8 +251,8 @@ const Calculator = (props) => {
 			}
 		}
 		let interestArray = [];
-		for(let i = 0; i < interestData.length; i++) {
-			interestArray.push({name: 'interest' + i, value: interestData[i]})
+		for(let i = 1; i < interestData.length; i++) {
+			interestArray.push({name: 'interest for ' + i + 'year(s)', value: interestData[i]})
 		}
 		setInterests(interestArray);
 
@@ -265,6 +265,7 @@ const Calculator = (props) => {
 			{ name: 'Total Months', value: totalMonths },
 			{ name: 'Total Days', value: totalDays },
 			{ name: 'Amount', value: amount },
+			{name: 'Interest Rate', value: interestRate},
 			{name: 'Interests', value: interestArray},
 			{ name: 'Total Interest', value: totalInterest },
 			{ name: 'Total Amount', value: totalAmount },
