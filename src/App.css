@@ -228,6 +228,10 @@ background-color: #c3c0bd;
   width: 140px;
 }
 
+.w-100 {
+  width: 100px;
+}
+
 .main-screen {
-  background-image: url(./calc-bg.jpg);
+  /* background-image: url(./calc-bg.jpg); */
 }

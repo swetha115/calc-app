@@ -439,7 +439,7 @@ const Calculator = (props) => {
 				</div>
 
 				<input type="button" onClick={calculateInterest} value="Calculate"
-					className={isButtonDisabled ? 'submitStyle button-disabled' : 'submitStyle button-enabled'} />
+					className={isButtonDisabled ? 'submitStyle button-disabled w-100' : 'submitStyle button-enabled w-100'} />
 
 			</form>
 
