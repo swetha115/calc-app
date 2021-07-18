@@ -118,3 +118,56 @@ p {
 .c-red {
   color: red;
 }
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #fdfcfc;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 18.7em;
+  height: 2em;
+  line-height: 2;
+  background: #fdfcfc;
+  overflow: hidden;
+  border-radius: .25em;
+  border: 1px solid #BFBFBF;
+}
+select {
+  flex: 1;
+  padding: 0 .5em;
+  color:black;
+  font-weight: 100;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #7b8080;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
