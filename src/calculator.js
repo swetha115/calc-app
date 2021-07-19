@@ -105,7 +105,7 @@ const Calculator = (props) => {
 					{errorMsg != '' ? errorMsg : ''}
 				</div>
 
-				<div className="float-left pr-38">
+				<div>
 					<label className="display-block">Start Date(dd/mm/yyyy) *</label>
 					<DatePicker
 						selected={startDate}
@@ -113,7 +113,7 @@ const Calculator = (props) => {
 					/>
 				</div>
 
-				<div className="pl-20">
+				<div>
 					<label className="display-block">End Date(dd/mm/yyyy) *</label>
 					<DatePicker
 						selected={endDate}

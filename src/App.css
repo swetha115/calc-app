@@ -55,7 +55,7 @@ p {
   border: 1px solid #C9C9C9;
   border-radius: 5px;
   background: #F5F5F5;
-  width: 400px;
+  width: 350px;
   display: block;
   margin-top: 100px;
 }
@@ -142,7 +142,7 @@ select::-ms-expand {
 .select {
   position: relative;
   display: flex;
-  width: 25em;
+  width: 22em;
   height: 2em;
   line-height: 2;
   background: #fdfcfc;
@@ -264,4 +264,8 @@ background-color: #c3c0bd;
 
 .c-grey {
   color: #859696;
+}
+
+.react-datepicker-wrapper {
+  width: 22em;
 }
