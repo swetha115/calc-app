@@ -1,5 +1,6 @@
 import './App.css';
 function Result(props) {
+	
 	return (
 		<div className="table-view">
 			<form>
@@ -19,7 +20,7 @@ function Result(props) {
 										
 										<tr>
 											<td key={i + j}>{propValue.name}</td>
-											<td key={i + j}>{propValue.value}</td>
+											<td key={i + j}>{Math.round(propValue.value)}</td>
 										</tr>
 									)) :
 									<tr>

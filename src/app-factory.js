@@ -1,39 +1,120 @@
 import React, { useState } from 'react';
 
 function isValidation(props) {
-	let { totalYears, totalMonths, totalDays, amount, interestRate, startDate, endDate} = props;
 
-	if( amount === '0' || interestRate === '0' || startDate === '0' || endDate === '0' || 
-	amount === '' || interestRate === '' || startDate === '' || endDate === '') {
+	let { amount, interestRate, startDate, endDate, interestSelectType } = props;
+
+
+	let startDateFormat = new Date(startDate);
+	let endDateFormat = new Date(endDate);
+
+	let startyear = startDateFormat.getUTCFullYear();
+	let startmonth = startDateFormat.getUTCMonth() + 1;
+	let startday = startDateFormat.getUTCDate() + 1;
+
+
+	let endyear = endDateFormat.getUTCFullYear();
+	let endmonth = endDateFormat.getUTCMonth() + 1;
+	let endday = endDateFormat.getUTCDate() + 1;
+
+	if (amount === '0' || interestRate === '0' || startDate === null || endDate === null || interestSelectType === '' ||
+		amount === '' || interestRate === '') {
 		return "All fields are manditory"
 	}
-	if( totalYears === '0' && totalMonths === '0' && totalDays === '0'  ) {
+
+	if ((startyear > endyear) ||
+		(startyear == endyear && startmonth > endmonth) ||
+		(startmonth == endmonth && startday > endday)) {
+		return "Please check dates entered";
+	}
+
+	if(startmonth > 12 || endmonth > 12 || startday > 31 ||endday > 31 ) {
+		return "Please check dates entered";
+	}
+
+	let { years, months, days } = getStartAndEndDetails({ startyear, startmonth, startday, endyear, endmonth, endday });
+
+	if (years === 0 && months === 0 && days === 0) {
 		return "Please check dates entered"
-	} else if(amount <= 0 ) {
+	} else if (amount <= 0) {
 		return "Amount sould be greater than '0'";
-	} else if(interestRate <= 0 ) {
+	} else if (interestRate <= 0) {
 		return "Interest rate sould be greater than '0'";
-	} 
+	}
 
 	return '';
 }
 
 export function isCalculateButtonDisabled(props) {
-	let { totalYears, totalMonths, totalDays, amount, interestRate, startDate, endDate} = props;
+	let { amount, interestRate, startDate, endDate, interestSelectType } = props;
+	let startDateFormat = new Date(startDate);
+	let endDateFormat = new Date(endDate);
 
-	if( amount === '0' || interestRate === '0' || startDate === '0' || endDate === '0' || 
-	amount === '' || interestRate === '' || startDate === '' || endDate === '') {
+	let startyear = startDateFormat.getUTCFullYear();
+	let startmonth = startDateFormat.getUTCMonth() + 1;
+	let startday = startDateFormat.getUTCDate() + 1;
+
+
+	let endyear = endDateFormat.getUTCFullYear();
+	let endmonth = endDateFormat.getUTCMonth() + 1;
+	let endday = endDateFormat.getUTCDate() + 1;
+
+	let { years, months, days } = getStartAndEndDetails({ startyear, startmonth, startday, endyear, endmonth, endday });
+
+	if (amount === '0' || interestRate === '0' || startDate === null || endDate === null || interestSelectType === '' ||
+		amount === '' || interestRate === '') {
 		return true;
 	}
-	if( totalYears === '0' && totalMonths === '0' && totalDays === '0'  ) {
+
+	
+	if ((startyear > endyear) ||
+		(startyear == endyear && startmonth > endmonth) ||
+		(startmonth == endmonth && startday > endday)) {
 		return true;
-	} else if(amount <= 0 ) {
+	}
+
+	if(startmonth > 12 || endmonth > 12 || startday > 31 ||endday > 31 ) {
 		return true;
-	} else if(interestRate <= 0 ) {
+	}
+
+	if (years === 0 && months === 0 && days === 0) {
 		return true;
-	} 
+	} else if (amount <= 0) {
+		return true;
+	} else if (interestRate <= 0) {
+		return true;
+	}
 
 	return false;
+}
+
+function getStartAndEndDetails(props) {
+	let { startyear, startmonth, startday, endyear, endmonth, endday } = props;
+
+
+	let years = 0;
+	let months = 0;
+	let days = 0;
+
+	if (endday >= startday) {
+		days = endday - startday;
+	} else {
+		endday = 30 + endday;
+		days = endday - startday
+		endmonth = endmonth - 1;
+	}
+
+	if (endmonth >= startmonth) {
+		months = endmonth - startmonth;
+	} else {
+		endmonth = 12 + endmonth;
+		months = endmonth - startmonth;
+		endyear = endyear - 1;
+	}
+
+	years = endyear - startyear;
+
+	return { years, months, days };
 }
 
 export default isValidation;

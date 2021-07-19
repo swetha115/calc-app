@@ -55,15 +55,16 @@ p {
   border: 1px solid #C9C9C9;
   border-radius: 5px;
   background: #F5F5F5;
-  width: 450px;
+  width: 400px;
   display: block;
+  margin-top: 100px;
 }
 .labelStyle {
   margin: 10px 0 5px 0;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
 }
-.inputStyle {
+.inputStyle, .react-datepicker__input-container input {
   margin: 5px 0 10px 0;
   padding: 5px;
   border: 1px solid #BFBFBF;
@@ -71,6 +72,7 @@ p {
   box-sizing: border-box;
   width: 100%;
 }
+
 .submitStyle {
   margin: 10px 0 0 0;
   padding: 7px 10px;
@@ -140,7 +142,7 @@ select::-ms-expand {
 .select {
   position: relative;
   display: flex;
-  width: 28em;
+  width: 25em;
   height: 2em;
   line-height: 2;
   background: #fdfcfc;
@@ -154,6 +156,10 @@ select {
   color:black;
   font-weight: 100;
   cursor: pointer;
+}
+
+select option{
+  color:black;
 }
 /* Arrow */
 .select::after {
@@ -234,4 +240,28 @@ background-color: #c3c0bd;
 
 .main-screen {
   /* background-image: url(./calc-bg.jpg); */
+}
+
+.float-left {
+  float: left;
+}
+
+.pl-20 {
+  padding-left: 20px;
+}
+
+.pr-20 {
+  padding-right: 20px;
+}
+
+.pr-38 {
+  padding-right: 38px;
+}
+
+.display-block {
+  display: block;
+}
+
+.c-grey {
+  color: #859696;
 }
