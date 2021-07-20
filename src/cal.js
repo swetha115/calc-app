@@ -4,7 +4,7 @@ export default function calculateFinalInterest(props) {
 
 
 function dayCalculator(props) {
-	let {startDate, endDate} = props;
+	let { startDate, endDate } = props;
 	let startDateFormat = new Date(startDate);
 	let endDateFormat = new Date(endDate);
 
@@ -38,12 +38,12 @@ function dayCalculator(props) {
 	}
 
 	years = endyear - startyear;
-	calculateInterest(props, {years, months, days})
+	calculateInterest(props, { years, months, days })
 }
 
 function calculateInterest(props, daysDiff) {
-	let { amount, interestRate, startDate, endDate, interestSelectType, onCalculationClick} = props;
-	let {years, months, days} = daysDiff;
+	let { amount, interestRate, startDate, endDate, interestSelectType, onCalculationClick } = props;
+	let { years, months, days } = daysDiff;
 
 	amount = Number(amount.replace(/,/g, ''));
 
@@ -250,7 +250,7 @@ function calculateInterest(props, daysDiff) {
 			interestData.push(i3);
 		}
 	}
-	let interestArray = []; 
+	let interestArray = [];
 	let count = 1;
 	for (let i = 0; i < interestData.length; i++) {
 		interestArray.push({ name: 'interest for ' + count + 'year(s)', value: interestData[i] });
@@ -272,20 +272,31 @@ function calculateInterest(props, daysDiff) {
 	let endmonth = endDateFormat.getUTCMonth() + 1;
 	let endday = endDateFormat.getUTCDate() + 1;
 
-	const addCommas = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	const removeNonNumeric = num => num.toString().replace(/[^0-9]/g, "");
+	amount = amount.toString();
+	var lastThree = amount.substring(amount.length - 3);
+	var otherNumbers = amount.substring(0, amount.length - 3);
+	if (otherNumbers != '')
+		lastThree = ',' + lastThree;
+	amount = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+
+	totalAmount = Math.round(totalAmount).toString();
+	var lastThree = totalAmount.substring(totalAmount.length - 3);
+	var otherNumbers = totalAmount.substring(0, totalAmount.length - 3);
+	if (otherNumbers != '')
+		lastThree = ',' + lastThree;
+	totalAmount = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
 
 	let properties = [
 		{ name: 'Start Date', value: startyear + '/' + startmonth + '/' + startday },
-		{ name: 'End Date', value: endyear + '/' + endmonth +'/' + endday },
+		{ name: 'End Date', value: endyear + '/' + endmonth + '/' + endday },
 		{ name: 'Total Years', value: years },
 		{ name: 'Total Months', value: months },
 		{ name: 'Total Days', value: days },
-		{ name: 'Amount', value: addCommas(removeNonNumeric(amount)) },
+		{ name: 'Amount', value: amount },
 		{ name: 'Interest Rate', value: interestRate },
 		{ name: 'Interests', value: interestArray },
 		{ name: 'Total Interest', value: Math.round(totalInterest) },
-		{ name: 'Total Amount', value: addCommas(removeNonNumeric(Math.round(totalAmount))) },
+		{ name: 'Total Amount', value: totalAmount },
 
 	]
 	onCalculationClick(properties);

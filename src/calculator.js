@@ -49,11 +49,20 @@ const Calculator = (props) => {
 	}
 
 	function changeAmount(e) {
-		const addCommas = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		const removeNonNumeric = num => num.toString().replace(/[^0-9]/g, "");
 
-		let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
-		setAmount(addCommas(removeNonNumeric(e.currentTarget.value)));
+		let value = e.currentTarget.value != '' ? Number(e.currentTarget.value.replace(/,/g, '')) : e.currentTarget.value
+		if (value != '') {
+			var x = value;
+			x = x.toString();
+			var lastThree = x.substring(x.length - 3);
+			var otherNumbers = x.substring(0, x.length - 3);
+			if (otherNumbers != '')
+				lastThree = ',' + lastThree;
+			value = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+		}
+
+
+		setAmount(value);
 	}
 
 	function changeStartDate(e) {
@@ -109,7 +118,12 @@ const Calculator = (props) => {
 					<label className="display-block">Start Date(dd/mm/yyyy) *</label>
 					<DatePicker
 						selected={startDate}
-						onChange={changeStartDate} dateFormat="dd/MM/yyyy"
+						onChange={changeStartDate}
+						dateFormat="dd/MM/yyyy"
+						peekNextMonth
+						showMonthDropdown
+						showYearDropdown
+						dropdownMode="select"
 					/>
 				</div>
 
@@ -117,7 +131,12 @@ const Calculator = (props) => {
 					<label className="display-block">End Date(dd/mm/yyyy) *</label>
 					<DatePicker
 						selected={endDate}
-						onChange={changeEndDate} dateFormat="dd/MM/yyyy"
+						onChange={changeEndDate}
+						dateFormat="dd/MM/yyyy"
+						peekNextMonth
+						showMonthDropdown
+						showYearDropdown
+						dropdownMode="select"
 					/>
 				</div>
 
@@ -126,7 +145,7 @@ const Calculator = (props) => {
 					<input
 						type="text"
 						className="inputStyle"
-						onChange={changeAmount} value = {amount}
+						onChange={changeAmount} value={amount}
 					/>
 				</div>
 				<div>
@@ -140,14 +159,12 @@ const Calculator = (props) => {
 
 				<div>
 					<label className="labelStyle">Interest type *</label>
-					<div className="select">
-						<select name="slct" id="slct3" onChange={changeInterestType} value={interestSelectType}
-							className={interestSelectType == '' ? 'c-grey' : ''}>
-							{interestType.map((e, key) => {
-								return <option key={key} value={e.value}>{e.name}</option>
-							})}
-						</select>
-					</div>
+					<select  onChange={changeInterestType} value={interestSelectType}
+						className={interestSelectType == '' ? 'my_class c-grey' : 'my_class'}>
+						{interestType.map((e, key) => {
+							return <option key={key} value={e.value} disabled ={e.name == 'Please select interest'}>{e.name}</option>
+						})}
+					</select>
 				</div>
 
 				<input type="button" onClick={calculateInterest} value="Calculate"
