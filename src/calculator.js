@@ -4,6 +4,7 @@ import isValidation, { isCalculateButtonDisabled } from './app-factory';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import calculateFinalInterest from './cal';
+import 'font-awesome/css/font-awesome.min.css';
 
 const Calculator = (props) => {
 	let { onCalculationClick } = props;
