@@ -45,7 +45,7 @@ function calculateInterest(props, daysDiff) {
 	let { amount, interestRate, startDate, endDate, interestSelectType, onCalculationClick } = props;
 	let { years, months, days } = daysDiff;
 
-	amount = Number(amount.replace(/,/g, ''));
+	amount = Number(amount);
 
 	let i1x = 0;
 	let i1 = 0;
@@ -272,19 +272,19 @@ function calculateInterest(props, daysDiff) {
 	let endmonth = endDateFormat.getUTCMonth() + 1;
 	let endday = endDateFormat.getUTCDate() + 1;
 
-	amount = amount.toString();
-	var lastThree = amount.substring(amount.length - 3);
-	var otherNumbers = amount.substring(0, amount.length - 3);
-	if (otherNumbers != '')
-		lastThree = ',' + lastThree;
-	amount = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+	// amount = amount.toString();
+	// var lastThree = amount.substring(amount.length - 3);
+	// var otherNumbers = amount.substring(0, amount.length - 3);
+	// if (otherNumbers != '')
+	// 	lastThree = ',' + lastThree;
+	// amount = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
 
-	totalAmount = Math.round(totalAmount).toString();
-	var lastThree = totalAmount.substring(totalAmount.length - 3);
-	var otherNumbers = totalAmount.substring(0, totalAmount.length - 3);
-	if (otherNumbers != '')
-		lastThree = ',' + lastThree;
-	totalAmount = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+	// totalAmount = Math.round(totalAmount).toString();
+	// var lastThree = totalAmount.substring(totalAmount.length - 3);
+	// var otherNumbers = totalAmount.substring(0, totalAmount.length - 3);
+	// if (otherNumbers != '')
+	// 	lastThree = ',' + lastThree;
+	// totalAmount = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
 
 	let properties = [
 		{ name: 'Start Date', value: startyear + '/' + startmonth + '/' + startday },

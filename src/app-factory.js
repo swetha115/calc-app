@@ -49,14 +49,13 @@ export function isCalculateButtonDisabled(props) {
 	let startDateFormat = new Date(startDate);
 	let endDateFormat = new Date(endDate);
 
-	let startyear = startDateFormat.getUTCFullYear();
-	let startmonth = startDateFormat.getUTCMonth() + 1;
-	let startday = startDateFormat.getUTCDate() + 1;
+	let startyear = startDateFormat.getFullYear();
+	let startmonth = startDateFormat.getMonth() + 1;
+	let startday = startDateFormat.getDate();
 
-
-	let endyear = endDateFormat.getUTCFullYear();
-	let endmonth = endDateFormat.getUTCMonth() + 1;
-	let endday = endDateFormat.getUTCDate() + 1;
+	let endyear = endDateFormat.getFullYear();
+	let endmonth = endDateFormat.getMonth() + 1;
+	let endday = endDateFormat.getDate();
 
 	let { years, months, days } = getStartAndEndDetails({ startyear, startmonth, startday, endyear, endmonth, endday });
 

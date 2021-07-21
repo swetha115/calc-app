@@ -312,3 +312,26 @@ background-color: #c3c0bd;
 .my_class option {
   color: black;
 }
+
+.datepicker_placeholder {
+  font-family: Arial, FontAwesome;
+}
+
+.react-datepicker__input-container input::placeholder { 
+  color: black;
+  float: right;
+}
+
+.input-icons {
+  font-family: Arial, FontAwesome;
+}
+
+.amount input::placeholder { 
+  color: black;
+  float: right;
+}
+
+.interest_rate input::placeholder { 
+  color: black;
+  float: right;
+}

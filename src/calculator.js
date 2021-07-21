@@ -45,24 +45,42 @@ const Calculator = (props) => {
 
 	function changeInterestRate(e) {
 		let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
-		setInterestRate(value);
+		if(Number(e.currentTarget.value) < 0) {
+			value = "1";
+			document.getElementById('interest').value = value;
+			setInterestRate(value);
+			checkForButtonDisabling();
+			isValidate();	
+		} else {
+			setInterestRate(value);
+		}
 	}
 
 	function changeAmount(e) {
 
-		let value = e.currentTarget.value != '' ? Number(e.currentTarget.value.replace(/,/g, '')) : e.currentTarget.value
-		if (value != '') {
-			var x = value;
-			x = x.toString();
-			var lastThree = x.substring(x.length - 3);
-			var otherNumbers = x.substring(0, x.length - 3);
-			if (otherNumbers != '')
-				lastThree = ',' + lastThree;
-			value = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+		let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
+
+		if(Number(e.currentTarget.value) < 0) {
+			value = "1";
+			document.getElementById('amount').value = value;
+			setAmount(value);
+			checkForButtonDisabling();
+			isValidate();	
+		} else {
+			setAmount(value);
 		}
+		
 
-
-		setAmount(value);
+		// let value = e.currentTarget.value != '' ? Number(e.currentTarget.value.replace(/,/g, '')) : e.currentTarget.value
+		// if (value != '') {
+		// 	var x = value;
+		// 	x = x.toString();
+		// 	var lastThree = x.substring(x.length - 3);
+		// 	var otherNumbers = x.substring(0, x.length - 3);
+		// 	if (otherNumbers != '')
+		// 		lastThree = ',' + lastThree;
+		// 	value = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+		// }
 	}
 
 	function changeStartDate(e) {
@@ -89,6 +107,7 @@ const Calculator = (props) => {
 		let isDisabled = isCalculateButtonDisabled(props);
 		setIsButtonDiabled(isDisabled);
 	}
+
 
 	function isValidate() {
 		let props = {
@@ -124,6 +143,8 @@ const Calculator = (props) => {
 						showMonthDropdown
 						showYearDropdown
 						dropdownMode="select"
+						placeholderText='&#xf073;'
+						className="datepicker_placeholder"
 					/>
 				</div>
 
@@ -137,23 +158,28 @@ const Calculator = (props) => {
 						showMonthDropdown
 						showYearDropdown
 						dropdownMode="select"
+						placeholderText='&#xf073;'
+						className="datepicker_placeholder"
 					/>
+
+					
 				</div>
 
-				<div>
+				<div class="amount">
 					<label className="labelStyle">Amount *</label>
-					<input
-						type="text"
-						className="inputStyle"
-						onChange={changeAmount} value={amount}
+					<input id="amount"
+						type="number"
+						className="inputStyle input-icons" placeholder="&#xf156;" 
+						onChange={changeAmount} min = "0" 
 					/>
 				</div>
-				<div>
+				<div class="interest_rate">
 					<label className="labelStyle">Interest Rate *</label>
-					<input
-						type="number"
-						className="inputStyle"
-						onChange={changeInterestRate}
+					<input id="interest"
+						type="number" placeholder="&#xf295;" className="datepicker_placeholder"
+						className="inputStyle input-icons"
+						onChange={changeInterestRate} min = "0" 
+						
 					/>
 				</div>
 
