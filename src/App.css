@@ -314,7 +314,7 @@ background-color: #c3c0bd;
 }
 
 .datepicker_placeholder {
-  font-family: Arial, FontAwesome;
+  font-family: Font Awesome\ 5 Free;
 }
 
 .react-datepicker__input-container input::placeholder { 
@@ -323,7 +323,7 @@ background-color: #c3c0bd;
 }
 
 .input-icons {
-  font-family: Arial, FontAwesome;
+  font-family: Font Awesome\ 5 Free;
 }
 
 .amount input::placeholder { 
