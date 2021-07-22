@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import isValidation, { isCalculateButtonDisabled } from './app-factory';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -45,12 +45,12 @@ const Calculator = (props) => {
 
 	function changeInterestRate(e) {
 		let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
-		if(Number(e.currentTarget.value) < 0) {
+		if (Number(e.currentTarget.value) < 0) {
 			value = "1";
 			document.getElementById('interest').value = value;
 			setInterestRate(value);
 			checkForButtonDisabling();
-			isValidate();	
+			isValidate();
 		} else {
 			setInterestRate(value);
 		}
@@ -60,16 +60,16 @@ const Calculator = (props) => {
 
 		let value = e.currentTarget.value === '' ? '0' : Number(e.currentTarget.value);
 
-		if(Number(e.currentTarget.value) < 0) {
+		if (Number(e.currentTarget.value) < 0) {
 			value = "1";
 			document.getElementById('amount').value = value;
 			setAmount(value);
 			checkForButtonDisabling();
-			isValidate();	
+			isValidate();
 		} else {
 			setAmount(value);
 		}
-		
+
 
 		// let value = e.currentTarget.value != '' ? Number(e.currentTarget.value.replace(/,/g, '')) : e.currentTarget.value
 		// if (value != '') {
@@ -121,7 +121,12 @@ const Calculator = (props) => {
 		setErrorMsg(error_Msg);
 	}
 
-	var  emailicon = <faEnvelopeOpen  size={10}  />;
+	const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+		<div class="inputWithIcon inputIconBg">
+		<input type="text" value={value} onClick={onClick} ref={ref}/>
+		<i class="fa fa-calendar fa-lg fa-fw" aria-hidden="true"></i>
+		</div>
+	  ));
 
 	return (
 
@@ -145,10 +150,8 @@ const Calculator = (props) => {
 						showMonthDropdown
 						showYearDropdown
 						dropdownMode="select"
-						placeholderText='dd/mm/yyyy &#xf073;'
-						className="datepicker_placeholder"
-					/>
-					<i class="far fa-calendar-alt"></i>
+						customInput= {<ExampleCustomInput />} >
+					</DatePicker>
 				</div>
 
 				<div>
@@ -161,37 +164,36 @@ const Calculator = (props) => {
 						showMonthDropdown
 						showYearDropdown
 						dropdownMode="select"
-						placeholderText='&#xf073;'
-						className="datepicker_placeholder"
-					/>
+						customInput= {<ExampleCustomInput />} />
 
-					
+
 				</div>
 
-				<div class="amount">
+				<div>
 					<label className="labelStyle">Amount *</label>
-					<input id="amount"
-						type="number"
-						className="inputStyle input-icons" placeholder="&#xf156;" 
-						onChange={changeAmount} min = "0" 
-					/>
+					<div class="inputWithIcon inputIconBg">
+						<input type="number" id="amount" onChange={changeAmount} min="0" />
+						<i class="fa fa-inr fa-lg fa-fw" aria-hidden="true"></i>
+					</div>
 				</div>
-				<div class="interest_rate">
+
+				<div >
 					<label className="labelStyle">Interest Rate *</label>
-					<input id="interest"
-						type="number" placeholder="&#xf295;" className="datepicker_placeholder"
-						className="inputStyle input-icons"
-						onChange={changeInterestRate} min = "0" 
-						
-					/>
+					<div class="inputWithIcon inputIconBg">
+						<input id="interest"
+							type="number"
+							onChange={changeInterestRate} min="0"
+						/>
+						<i class="fa fa-percent fa-lg fa-fw" aria-hidden="true"></i>
+					</div>
 				</div>
 
 				<div>
 					<label className="labelStyle">Interest type *</label>
-					<select  onChange={changeInterestType} value={interestSelectType}
+					<select onChange={changeInterestType} value={interestSelectType}
 						className={interestSelectType == '' ? 'my_class c-grey' : 'my_class'}>
 						{interestType.map((e, key) => {
-							return <option key={key} value={e.value} disabled ={e.name == 'Please select interest'}>{e.name}</option>
+							return <option key={key} value={e.value} disabled={e.name == 'Please select interest'}>{e.name}</option>
 						})}
 					</select>
 				</div>
