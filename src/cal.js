@@ -296,7 +296,7 @@ function calculateInterest(props, daysDiff) {
 		{ name: 'Interest Rate', value: interestRate },
 		{ name: 'Interests', value: interestArray },
 		{ name: 'Total Interest', value: Math.round(totalInterest) },
-		{ name: 'Total Amount', value: totalAmount },
+		{ name: 'Total Amount', value: Math.round(Number(totalAmount)) },
 
 	]
 	onCalculationClick(properties);

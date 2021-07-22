@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import calculateFinalInterest from './cal';
 import 'font-awesome/css/font-awesome.min.css';
+import { faEnvelopeOpen } from '@fortawesome/free-regular-svg-icons';
 
 const Calculator = (props) => {
 	let { onCalculationClick } = props;
@@ -122,6 +123,8 @@ const Calculator = (props) => {
 		setErrorMsg(error_Msg);
 	}
 
+	var  emailicon = <faEnvelopeOpen  size={10}  />;
+
 	return (
 
 		<div>
@@ -144,9 +147,10 @@ const Calculator = (props) => {
 						showMonthDropdown
 						showYearDropdown
 						dropdownMode="select"
-						placeholderText='&#xf073;'
+						placeholderText='dd/mm/yyyy &#xf073;'
 						className="datepicker_placeholder"
 					/>
+					<i class="far fa-calendar-alt"></i>
 				</div>
 
 				<div>
