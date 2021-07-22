@@ -327,7 +327,7 @@ background-color: #c3c0bd;
   font-family: 'Font Awesome 5 Free';
     font-weight: 900;
 }
-
+/* 
 .amount input::placeholder { 
   color: black;
   float: right;
@@ -336,4 +336,4 @@ background-color: #c3c0bd;
 .interest_rate input::placeholder { 
   color: black;
   float: right;
-}
+} */
