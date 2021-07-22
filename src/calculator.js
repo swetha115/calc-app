@@ -174,14 +174,14 @@ const Calculator = (props) => {
 					<label className="labelStyle">Amount *</label>
 					<input id="amount"
 						type="number"
-						className="inputStyle input-icons" placeholder="amount" 
+						className="inputStyle input-icons" placeholder="&#xf156;" 
 						onChange={changeAmount} min = "0" 
 					/>
 				</div>
 				<div class="interest_rate">
 					<label className="labelStyle">Interest Rate *</label>
 					<input id="interest"
-						type="number" placeholder="rate" className="datepicker_placeholder"
+						type="number" placeholder="&#xf295;" className="datepicker_placeholder"
 						className="inputStyle input-icons"
 						onChange={changeInterestRate} min = "0" 
 						
