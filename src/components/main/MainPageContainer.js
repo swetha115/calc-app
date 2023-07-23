@@ -27,23 +27,23 @@ const MainPageContainer = () => {
     <div className="viewContainer">
       <div
         className="viewMainContainer viewMainSubContainerLeft"
-        onClick={goToSimpleInterestCalculator}
+        
       >
-        <div className="imageContainer">
+        <div className="imageContainer" onClick={goToSimpleInterestCalculator}>
           <config.intCalculatorSvg />
         </div>
-        <div className="labelContainer">
+        <div className="labelContainer" onClick={goToSimpleInterestCalculator}>
           <div className="textContainer">Simple Interest</div>
         </div>
       </div>
       <div
         className="viewMainContainer viewMainSubContainerRight"
-        onClick={goToCompoundInterestCalculator}
+       
       >
-        <div className="imageContainer">
+        <div className="imageContainer"  onClick={goToCompoundInterestCalculator}>
           <config.compoundInterest />
         </div>
-        <div className="labelContainer">
+        <div className="labelContainer"  onClick={goToCompoundInterestCalculator}>
           <div className="textContainer">Compound Interest</div>
         </div>
       </div>

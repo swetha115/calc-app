@@ -14,7 +14,7 @@
   .viewMainContainer {
     display: flex;
     flex-direction: column;
-    width: 15%;
+    padding: 15px;
     justify-content: center;
   }
   .viewMainSubContainerLeft {
