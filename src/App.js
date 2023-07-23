@@ -22,6 +22,7 @@ function App() {
     <div class="main-screen">
       <div className="app-container">
         <Routes>
+        <Route exact path="/calc-app" element={<MainPageContainer />} />
           <Route exact path="/" element={<MainPageContainer />} />
           <Route exact path="/calculator" element={<Calculator />} />
           <Route exact path="/result" element={<Result />} />
