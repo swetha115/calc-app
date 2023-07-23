@@ -1,0 +1,29 @@
+ .mainPageContainer {
+    display: flex;
+    background-color: #f2f2f2;
+    height: 100%;
+  }
+  .viewContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-image: url(../../shared/images/main-bg.jpeg); 
+  }
+  .viewMainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    justify-content: center;
+  }
+  .viewMainSubContainerLeft {
+    text-align: center;
+  }
+  .viewMainSubContainerRight {
+    text-align: center;
+  }
+  .textContainer {
+    color: #1a255f;
+    font-weight: 600;
+  }

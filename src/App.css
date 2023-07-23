@@ -1,0 +1,416 @@
+html,
+body,
+#root,
+.main-screen,
+.app-container {
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logsrc/App.csso-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+h1,
+p {
+  font-family: Lato;
+}
+.appStyle {
+  height: 250px;
+  display: flex;
+}
+.formStyle {
+  /* margin: auto;
+  padding: 23px;
+  border: 1px solid #C9C9C9;
+  border-radius: 5px;
+  background: #F5F5F5;
+  width: 350px;
+  display: block;
+  margin-top: 100px; */
+}
+.labelStyle {
+  margin: 10px 0 5px 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+}
+.inputStyle,
+.react-datepicker__input-container input {
+  margin: 5px 0 10px 0;
+  padding: 5px;
+  border: 1px solid #bfbfbf;
+  border-radius: 3px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.submitStyle {
+  margin: 10px 0 0 0;
+  padding: 7px 10px;
+  border: 1px solid #efffff;
+  border-radius: 3px;
+  width: 100%;
+  font-size: 15px;
+  color: white;
+  display: block;
+}
+
+.button-enabled {
+  background: #3085d6;
+}
+
+.button-disabled {
+  background: #848181;
+  pointer-events: none;
+}
+
+.pb-30 {
+  padding-bottom: 30px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.startDate {
+  float: left;
+}
+.endDate {
+  margin-left: 620px;
+}
+.display-flex {
+  display: flex;
+}
+
+.text-align {
+  text-align: center;
+}
+
+.app-container {
+  /* left: 66%;
+    width: 30em;
+    margin-left: 30%; */
+}
+
+.c-red {
+  color: red;
+}
+
+.select-class {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #fdfcfc;
+  background-image: none;
+}
+/* Remove IE arrow */
+.select-class::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 22em;
+  height: 2em;
+  line-height: 2;
+  background: #fdfcfc;
+  overflow: hidden;
+  border-radius: 0.25em;
+  border: 1px solid #bfbfbf;
+}
+.select-class {
+  flex: 1;
+  padding: 0 0.5em;
+  color: black;
+  font-weight: 100;
+  cursor: pointer;
+}
+
+.select-class option {
+  color: black;
+}
+/* Arrow */
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #7b8080;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+
+.table-view {
+  /* left: 66%;
+  width: 35em;
+  height: 18em;
+  padding-top: 70px; */
+}
+
+.viewdata {
+  font-family: system-ui;
+  font-size: 13px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.viewdata td,
+.viewdata th {
+  border: 1px solid #ddd;
+  padding: 5px;
+  width: 200px;
+}
+
+.viewdata tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.viewdata tr:nth-child(odd) {
+  background-color: #c3c0bd;
+}
+
+.viewdata tr:last-child {
+  background-color: #004e95;
+}
+
+.viewdata tr:last-child:hover {
+  background-color: #004e95 !important;
+}
+
+.viewdata tr:hover {
+  background-color: #ddd;
+}
+
+.viewdata tr:last-child {
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.viewdata th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+  background-color: #004e95;
+  color: white;
+  width: 200px;
+}
+
+.title {
+  text-align: center;
+  font-family: arial, sans-serif;
+}
+
+.table-back-button {
+  width: 150px;
+}
+
+.w-140 {
+  width: 140px;
+}
+
+.w-100 {
+  width: 100px;
+}
+
+.main-screen {
+  /* background-image: url(./rupee-sign-solid.svg);  */
+}
+
+.float-left {
+  float: left;
+}
+
+.pl-20 {
+  padding-left: 20px;
+}
+
+.pr-20 {
+  padding-right: 20px;
+}
+
+.pr-38 {
+  padding-right: 38px;
+}
+
+.display-block {
+  display: block;
+}
+
+.c-grey {
+  color: #859696;
+}
+
+.c-black {
+  color: #0000;
+}
+
+.react-datepicker-wrapper {
+  width: 22em;
+}
+
+.react-datepicker__header__dropdown,
+.react-datepicker__header__dropdown--select {
+  height: 27px;
+  margin-top: 10px;
+}
+
+.react-datepicker__month-select,
+.react-datepicker__year-select {
+  height: 25px;
+}
+
+.my_class {
+  display: block;
+  padding: 5px 5px;
+  width: 350px;
+  border: 2px solid #676363;
+  border-radius: 0;
+  background-color: white;
+  background-image: linear-gradient(45deg, transparent 50%, #676363 50%),
+    linear-gradient(135deg, #676363 50%, transparent 50%);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+
+  font: inherit;
+
+  -webkit-appearance: none;
+}
+
+.my_class option {
+  color: black;
+}
+
+.datepicker_placeholder {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+.react-datepicker__input-container input::placeholder {
+  color: black;
+  float: right;
+}
+
+.input-icons {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+/* 
+.amount input::placeholder { 
+  color: black;
+  float: right;
+}
+
+
+
+.interest_rate input::placeholder { 
+  color: black;
+  float: right;
+} */
+
+/*Don't forget to add Font Awesome CSS : "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"*/
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  border: 2px solid #7b7272;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: dodgerBlue;
+  /* box-shadow: 0 0 8px 0 dodgerBlue; */
+}
+
+.inputWithIcon input[type="text"],
+.inputWithIcon input[type="number"] {
+  /* padding-left: 40px; */
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon i {
+  /* position: absolute;
+  left: 0;
+  top: 8px;
+  padding: 9px 8px;
+  color: #aaa;
+  transition: 0.3s; */
+}
+
+.inputWithIcon input[type="text"]:focus + i,
+.inputWithIcon input[type="number"]:focus + i {
+  color: dodgerBlue;
+}
+
+.inputWithIcon.inputIconBg i {
+  background-color: #5f5e5e;
+  color: #fff;
+  padding: 10px 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.inputWithIcon.inputIconBg input[type="text"]:focus + i,
+.inputWithIcon.inputIconBg input[type="number"]:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+
+select:focus {
+  outline: none;
+  border-color: dodgerBlue;
+}
