@@ -2,7 +2,7 @@
   "name": "calc-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://swetha115.github.io/",
+  "homepage": "https://swetha115.github.io/calc-app/",
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
